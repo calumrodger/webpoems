@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>silence</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            white-space: pre;
+        }
+        .text-1 {
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-size: 70%;
+            text-align: center;
+        }
+        .text-2 {
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-size: 60%;
+            text-align: center;
+            text-justify:inter-word;
+            /* width: 30px; */
+        }
+
+        .text2-5 {
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            font-size: 50%;
+            text-align: center;
+        }
+
+        .text-3 {
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            text-align: center;
+            font-size: 60%;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 33% 33% 33%;
+            grid-column-gap: 1%;
+            grid-template-rows: 20% 20% 20% 20% 20%;
+            grid-row-gap: 2%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            line-height: 20px;
+        }
+        .voiced-box {
+            font-size: 150%;
+        }
+        .silent-box {
+            cursor: grab;
+            font-size: 150%;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="voiced-box"><div id="top-left" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="top-centre" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="top-right" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="second-left" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="second-centre" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="second-right" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="centre-left" onClick="setSilence(this.id)">silence</div></div>
+        <div class="silent-box"><div id="centre" onClick="setSilence(this.id)"> </div></div>
+        <div class="voiced-box"><div id="centre-right" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="fourth-left" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="fourth-centre" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="fourth-right" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="bottom-left" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="bottom-centre" onClick="setSilence(this.id)">silence</div></div>
+        <div class="voiced-box"><div id="bottom-right" onClick="setSilence(this.id)">silence</div></div>
+    </div>
+    <div class="text-box">
+    <span class="text-1">
+    <em>silence</em>
+    Eugen Gomringer 1954</span>
+    <div class="text-2" text-align="justify"><span>
+    The constellation is ordered by the poet. He determines the play-area, the field or force and suggests its possibilities. The reader, the new reader, grasps the idea of play, and joins in.</span></div>
+    <div class="text2-5"><span>From Line to Constellation 1950</span></div>
+    <span class="text-3">play-area remaster Calum Rodger 2022</span></div>
+
+    
+</body>
+<script>
+    function setSilence(touchedSilence) {
+        const silences = ["top-left", "top-centre", "top-right", "second-left", "second-centre", "second-right", "centre-left", "centre", "centre-right", "fourth-left", "fourth-centre", "fourth-right", "bottom-left", "bottom-centre", "bottom-right"]
+        let oldSilence = document.querySelector(`#${touchedSilence}`)
+        if (oldSilence.textContent == " ") {
+            const sort = silences.indexOf(touchedSilence);
+            if (sort !== -1) {
+            silences.splice(sort, 1);
+                }
+            oldSilence.textContent = "silence"
+            oldSilence.parentElement.className = "voiced-box"
+            let randomSilence = silences[Math.floor(Math.random() * silences.length)]
+            let newSilence = document.querySelector(`#${randomSilence}`)
+            newSilence.textContent = " "
+            newSilence.parentElement.className = "silent-box"
+        } 
+    }
+</script>
+</html>
